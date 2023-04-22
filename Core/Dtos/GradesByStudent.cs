@@ -8,7 +8,7 @@ public class GradesByStudent
     public int? StudentId { get; set; }
     public string StudentCompleteName { get; set; }
 
-    public List<GradeDto> Grades { get; set; } = new();
+    public List<GradeWithDetailsDto> Grades { get; set; } = new();
 
     public GradesByStudent(Student student)
     {
@@ -19,10 +19,12 @@ public class GradesByStudent
         if (student?.Grades != null)
         {
             Grades = student.Grades
-                .Select(g => new GradeDto
+                .Select(g => new GradeWithDetailsDto
                 {
                     Value = g.Value,
-                    Course = g.Course
+                    Course = g.Course,
+                    CourseName = g.Course.ToString(),
+                    Student = g.Student.FirstName + " " + g.Student.LastName
                 })
                 .ToList();
         }
