@@ -32,6 +32,25 @@ namespace DataLayer.Repositories
             return result;
         }
 
+        public Student GetByUserId(int userId)
+        {
+            var result = dbContext.Students
+                .Include(e => e.Class)
+                .Include(e => e.Grades)
+                .FirstOrDefault(e => e.UserId == userId);
+            return result;
+        }
+
+        //Overwrite the base method GetAll to include the Class and Grades
+        public List<Student> GetAllPlusDependencies()
+        {
+            var results = dbContext.Students
+                .Include(e => e.Class)
+                .Include(e => e.Grades)
+                .ToList();
+            return results;
+        }
+
         public List<string> GetClassStudents(int classId)
         {
             var results = dbContext.Students
