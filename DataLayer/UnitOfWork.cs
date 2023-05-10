@@ -4,28 +4,25 @@ namespace DataLayer
 {
     public class UnitOfWork
     {
-        public StudentsRepository Students { get; }
-        public ClassRepository Classes { get; }
         public UsersRepository Users { get; }
         public RolesRepository Roles { get; }
+        public TripsRepository Trips { get; }
 
         private readonly AppDbContext _dbContext;
 
         public UnitOfWork
         (
             AppDbContext dbContext,
-            StudentsRepository studentsRepository,
-            ClassRepository classes,
             UsersRepository users,
-            RolesRepository roles
+            RolesRepository roles,
+            TripsRepository trips
 
         )
         {
             _dbContext = dbContext;
-            Students = studentsRepository;
-            Classes = classes;
             Users = users;
             Roles = roles;
+            Trips = trips;
         }
 
         public void SaveChanges()

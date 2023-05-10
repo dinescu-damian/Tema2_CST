@@ -7,18 +7,13 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Repositories
 {
-    public class UsersRepository : RepositoryBase<User>
+    public class TripsRepository : RepositoryBase<Trip>
     {
         private readonly AppDbContext dbContext;
 
-        public UsersRepository(AppDbContext dbContext) : base(dbContext)
+        public TripsRepository(AppDbContext dbContext) : base(dbContext)
         {
             this.dbContext = dbContext;
-        }
-
-        public User GetByEmail(string email)
-        {
-            return dbContext.Users.FirstOrDefault(x => x.Email == email);
         }
     }
 }

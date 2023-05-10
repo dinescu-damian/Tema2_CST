@@ -11,31 +11,31 @@ namespace DataLayer.Mapping
 {
     public static class UsersMappingExtensions
     {
-        /*
-         public static StudentDto ToStudentDto(this Student student)
+
+        public static List<UserDto> ToUserDtos(this List<User> users)
         {
-            if (student == null) return null;
+            if (users == null)
+            {
+                return null;
+            }
 
-            var result = new StudentDto();
-            result.Id = student.Id;
-            result.FullName = student.FirstName + " " + student.LastName;
-            result.ClassId = student.ClassId;
-            result.ClassName = student.Class?.Name;
-            result.Grades = student.Grades.ToGradeDtos();
+            var results = users.Select(e => e.ToUserDto()).ToList();
 
-            return result;
+            return results;
         }
-            */
-        
+
+
+
         public static UserDto ToUserDto(this User user)
         {
             if (user == null) return null;
 
             var result = new UserDto();
             result.Id = user.Id;
-            result.Username = user.Username;
-            result.PasswordHash = user.PasswordHash;
             result.Email = user.Email;
+            result.PasswordHash = user.PasswordHash;
+            result.Name = user.Name;
+            result.Surname = user.Surname;
             result.RoleId = user.RoleId;
             result.RoleName = user.Role?.Name;
 

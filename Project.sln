@@ -5,11 +5,9 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project", "Project\Project.csproj", "{7F2D85DE-CB43-485A-8CCA-777A665DEA55}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDrive", "TestDrive\TestDrive.csproj", "{BC410229-346A-4570-B590-A1DAB9F2EE9B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{F582DDB6-89B1-48A8-93C7-42570C41E60E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{22521634-A372-439B-B90B-A6FF3E4A20CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{22521634-A372-439B-B90B-A6FF3E4A20CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		{7F2D85DE-CB43-485A-8CCA-777A665DEA55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F2D85DE-CB43-485A-8CCA-777A665DEA55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F2D85DE-CB43-485A-8CCA-777A665DEA55}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BC410229-346A-4570-B590-A1DAB9F2EE9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC410229-346A-4570-B590-A1DAB9F2EE9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC410229-346A-4570-B590-A1DAB9F2EE9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC410229-346A-4570-B590-A1DAB9F2EE9B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F582DDB6-89B1-48A8-93C7-42570C41E60E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F582DDB6-89B1-48A8-93C7-42570C41E60E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F582DDB6-89B1-48A8-93C7-42570C41E60E}.Release|Any CPU.ActiveCfg = Release|Any CPU

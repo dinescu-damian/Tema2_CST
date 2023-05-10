@@ -20,7 +20,7 @@ namespace Project.Controllers
 
         [HttpPost("register")]
         [AllowAnonymous]
-        public IActionResult Register([FromBody] RegisterDto registerData)
+        public IActionResult Register([FromBody] UserRegisterDTO registerData)
         {
             if (registerData == null)
             {
@@ -32,7 +32,7 @@ namespace Project.Controllers
 
         [HttpPost("login")]
         [AllowAnonymous]
-        public IActionResult Login([FromBody] LoginDto payload)
+        public IActionResult Login([FromBody] UserLoginDTO payload)
         {
             var jwtToken = userService.Validate(payload);
             if (jwtToken == null)
@@ -40,40 +40,6 @@ namespace Project.Controllers
                 return Unauthorized();
             }
             return Ok(new {token = jwtToken});
-        }
-
-        [HttpGet("students-only")]
-        [Authorize(Roles = "Student")]
-        public ActionResult<string> HelloStudents()
-        {
-            return Ok("Hello students!");
-        }
-
-        [HttpGet("teacher-only")]
-        [Authorize(Roles = "Teacher")]
-        public ActionResult<string> HelloTeachers()
-        {
-            return Ok("Hello teachers!");
-        }
-
-        // Endpoint that returns only the grades of the student that is logged in
-        // or the grades of all students if the logged in user is a teacher
-        [HttpGet("grades-by-role")]
-        [Authorize(Roles = "Teacher, Student")]
-        public ActionResult<List<GradeWithDetailsDto>> GradesByRole()
-        {
-            var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role).Value;
-            if (role == "Student")
-            {
-                var id = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
-                var grades = userService.GetGradesOfStudent(int.Parse(id));
-                return Ok(grades);
-            }
-            else
-            {
-                var grades = userService.GetGradesOfAllStudents();
-                return Ok(grades);
-            }
         }
 
 

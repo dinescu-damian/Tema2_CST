@@ -24,7 +24,7 @@ namespace Core.Services
             this.authService = authService;
         }
 
-        public void Register(RegisterDto registerData)
+        public void Register(UserRegisterDTO registerData)
         {
             if (registerData == null)
             {
@@ -35,19 +35,20 @@ namespace Core.Services
 
             var user = new User
             {
-                Username = registerData.Username,
+                UserId = Guid.NewGuid(),
                 Email = registerData.Email,
                 PasswordHash = hashedPassword,
-                RoleId = registerData.RoleId,
+                Name = registerData.Name,
+                Surname = registerData.Surname,
             };
 
             unitOfWork.Users.Insert(user);
             unitOfWork.SaveChanges();
         }
 
-        public string Validate(LoginDto payload)
+        public string Validate(UserLoginDTO payload)
         {
-            var user = unitOfWork.Users.GetByUsername(payload.Username);
+            var user = unitOfWork.Users.GetByEmail(payload.Email);
             if (user == null)
             {
                 return null;
@@ -67,35 +68,6 @@ namespace Core.Services
             }
 
         }
-
-        // Get the grades from the logged in student
-        public List<GradeWithDetailsDto> GetGradesOfStudent(int userId)
-        {
-            //Firstly get the student associated with the user
-            var student = unitOfWork.Students.GetByUserId(userId);
-
-            var grades = new GradesByStudent(student);
-            //var grades = student.Grades.ToList();
-            // Use mapping to convert the grades to gradeDtos
-            //var gradeDtos = grades.ToGradeDtos();
-
-            return grades.Grades;
-        }
-
-        // As a teacher, get the grades of every student in the database
-        public List<GradeWithDetailsDto> GetGradesOfAllStudents()
-        {
-            var students = unitOfWork.Students.GetAllPlusDependencies();
-            // for each student, get the grades
-            var grades = new List<GradeWithDetailsDto>();
-            foreach (var student in students)
-            {
-                var gradesByStudent = new GradesByStudent(student);
-                grades.AddRange(gradesByStudent.Grades);
-            }
-            return grades;
-        }
-
 
 
         public List<User> GetAll()

@@ -29,9 +29,8 @@ namespace Project.Settings
 
         private static void AddRepositories(IServiceCollection services)
         {
-            services.AddScoped<StudentsRepository>();
-            services.AddScoped<ClassRepository>();
             services.AddScoped<UsersRepository>();
+            services.AddScoped<TripsRepository>();
             services.AddScoped<RolesRepository>();
             services.AddScoped<UnitOfWork>();
         }
